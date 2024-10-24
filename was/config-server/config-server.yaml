@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: config-server
-          image: docker.io/inseonghwang0328/nyamnyam-config-server:latest
+          image: docker.io/yujeongoyj/nyamnyam-config-server:latest
           ports:
             - containerPort: 8888
           resources:
