@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: admin-service
-          image: nyamnyam.kr/nyamnyam/admin-service:175
+          image: docker.io/inseonghwang0328/nyamnyam-post-service:latest
           ports:
             - containerPort: 8080
           resources:
@@ -34,7 +34,7 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: admin-service-config
+            name: admin-service
       imagePullSecrets:
         - name: nyamnyam-regcred
 ---
