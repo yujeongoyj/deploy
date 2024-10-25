@@ -27,20 +27,8 @@ spec:
               cpu: 500m
               memory: 512Mi
           env:
-            - name: SPRING_PROFILES_ACTIVE
-              value: git
-            - name: SPRING_CLOUD_EUREKA_SERVER_GIT_URI
-              value: https://github.com/inseong6275/nyamnyam-spring-cloud.git
-            - name: SPRING_CLOUD_EUREKA_SERVER_GIT_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: git-credentials
-                  key: username
-            - name: SPRING_CLOUD_EUREKA_SERVER_GIT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: git-credentials
-                  key: password
+            - name: SPRING_CONFIG_LOCATION
+              value: file:/app/config/application.yaml
           volumeMounts:
             - name: eureka-volume
               mountPath: /app/config  # 설정 파일을 마운트할 경로
@@ -63,3 +51,4 @@ spec:
       targetPort: 8761
   selector:
     app: eureka-server
+  type: LoadBalancer

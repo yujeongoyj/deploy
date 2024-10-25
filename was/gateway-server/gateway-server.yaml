@@ -27,12 +27,8 @@ spec:
               cpu: 500m
               memory: 512Mi
           env:
-            - name: SPRING_PROFILES_ACTIVE
-              value: git
-            - name: SPRING_CLOUD_CONFIG_URI
-              value: http://config-server:8888
-            - name: SPRING_APPLICATION_NAME
-              value: gateway-server
+            - name: SPRING_CONFIG_LOCATION
+              value: file:/app/config/application.yaml
           volumeMounts:
             - name: gateway-volume
               mountPath: /app/config
