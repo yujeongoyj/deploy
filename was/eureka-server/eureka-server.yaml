@@ -1,54 +1,16 @@
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: eureka-server
-  namespace: nyamnyam
-spec:
-  revisionHistoryLimit: 1
-  selector:
-    matchLabels:
-      app: eureka-server
-  template:
-    metadata:
-      labels:
-        app: eureka-server
-    spec:
-      containers:
-        - name: eureka-server
-          image: docker.io/yujeongoyj/nyamnyam-eureka-server:latest
-          ports:
-            - containerPort: 8761
-          resources:
-            requests:
-              cpu: 100m
-              memory: 256Mi
-            limits:
-              cpu: 500m
-              memory: 512Mi
-          env:
-            - name: SPRING_CONFIG_LOCATION
-              value: file:/app/config/application.yaml
-          volumeMounts:
-            - name: eureka-volume
-              mountPath: /app/config  # 설정 파일을 마운트할 경로
-      volumes:
-        - name: eureka-volume
-          configMap:
-            name: eureka-server
-      imagePullSecrets:
-        - name: nyamnyam-regcred  # 이미지 풀 비밀 이름, 맞는지 확인
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: eureka-server
-  namespace: nyamnyam
-spec:
-  ports:
-    - protocol: TCP
-      port: 8761
-      targetPort: 8761
-  selector:
-    app: eureka-server
-  type: LoadBalancer
+server:
+  port: 8761
+
+spring:
+  application:
+    name: eureka
+
+eureka:
+  instance:
+    hostname: nyamnyam-eureka-server-a5ef8-100122233-8a2cf10bd9d7.kr.lb.naverncp.com
+    preferIpAddress: false
+  client:
+    service-url:
+      defaultZone: http://nyamnyam-eureka-server-a5ef8-100122233-8a2cf10bd9d7.kr.lb.naverncp.com :8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true

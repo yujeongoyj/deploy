@@ -44,6 +44,7 @@ metadata:
   name: restaurant-service
   namespace: nyamnyam
 spec:
+  type: ClusterIP
   ports:
     - protocol: TCP
       port: 8004

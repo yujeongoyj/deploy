@@ -13,6 +13,7 @@ spec:
       labels:
         app: chat-service
     spec:
+
       containers:
         - name: chat-service
           image: docker.io/yujeongoyj/nyamnyam-chat-service:latest
@@ -44,6 +45,7 @@ metadata:
   name: chat-service
   namespace: nyamnyam
 spec:
+  type: ClusterIP
   ports:
     - protocol: TCP
       port: 8002
