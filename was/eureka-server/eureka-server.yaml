@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: eureka-server
-          image: docker.io/yujeongoyj/nyamnyam-eureka-server:latest
+          image: docker.io/alrk/nyamnyam-eureka-server:latest
           ports:
             - containerPort: 8761
           resources:
@@ -30,10 +30,10 @@ spec:
             - name: SPRING_CONFIG_LOCATION
               value: file:/app/config/application.yaml
           volumeMounts:
-            - name: eureka-volume
+            - name: config-volume
               mountPath: /app/config  # 설정 파일을 마운트할 경로
       volumes:
-        - name: eureka-volume
+        - name: config-volume
           configMap:
             name: eureka-server
       imagePullSecrets:

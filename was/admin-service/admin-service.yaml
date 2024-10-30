@@ -44,6 +44,8 @@ metadata:
   name: admin-service
   namespace: nyamnyam
 spec:
+
+  type: ClusterIP
   ports:
     - protocol: TCP
       port: 8001
