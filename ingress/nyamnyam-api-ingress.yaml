@@ -16,7 +16,7 @@ spec:
             pathType: ImplementationSpecific
             backend:
               service:
-                name: gateway-service
+                name: gateway-server
                 port:
                   number: 8000
           - path: /api/admin/(.*)
